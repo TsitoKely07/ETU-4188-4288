@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => '',
         'username'     => '',
         'password'     => '',
-        'database'     => '/opt/lampp/htdocs/Projet-Final-Igniter/writable/database.sqlite',
+        'database'     => '/home/itu/Documents/M.ROJO/Projet-Final-Igniter/writable/database.sqlite',
         'DBDriver'     => 'SQLite3',
         'DBPrefix'     => '',
         'pConnect'     => false,
