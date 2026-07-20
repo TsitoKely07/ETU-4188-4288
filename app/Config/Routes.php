@@ -19,6 +19,10 @@ $routes->group('', ['namespace' => 'App\Controllers\operator'], static function 
     $routes->get('operator/logout', 'AuthController::logout');
 
     $routes->get('operator', 'OperateurController::index');
+    $routes->get('operator/gains', 'OperateurController::gains');
+    $routes->get('operator/clients', 'OperateurController::clients');
+    $routes->get('operator/prefixes', 'OperateurController::prefixes');
+    $routes->get('operator/baremes', 'OperateurController::baremes');
     $routes->post('operator/addPrefix', 'OperateurController::addPrefix');
     $routes->post('operator/saveBareme', 'OperateurController::saveBareme');
 });
