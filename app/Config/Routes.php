@@ -51,3 +51,4 @@ $routes->group('', ['namespace' => 'App\Controllers\Client'], static function ($
         $routes->get('history', 'HistoryController::index');
     });
 });
+$routes->post('client/transfert-multiple', 'Client\OperationController::transfertMultiple', ['filter' => 'auth']);
