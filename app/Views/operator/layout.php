@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Espace Opérateur Money</title>
+    <title><?= $title ?? 'Espace Opérateur Money' ?></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -149,7 +149,9 @@
             margin-bottom:32px;
         }
         .brand-dot{
-            width:14px;height:14px            background:var(--pink);
+            width:14px;
+            height:14px;
+            background:var(--pink);
         }
         h1{
             font-family:'Sora',sans-serif;
@@ -184,7 +186,6 @@
 
         .panel{
             background:#fff;
-        
             border:1px solid rgba(15,15,16,0.06);
             overflow:hidden;
             display:flex;
@@ -238,7 +239,6 @@
 
         .badge{
             display:inline-block;
-        ;
             padding:5px 14px;
             font-size:0.78rem;
             font-weight:700;
@@ -246,7 +246,6 @@
             color:#fff;
         }
 
-        /* Formulaires */
         .inline-form{
             display:flex;
             gap:10px;
@@ -255,7 +254,6 @@
         .field{
             width:100%;
             border:1.5px solid #E7E5E0;
-        
             padding:11px 14px;
             font-family:'Inter',sans-serif;
             font-size:0.92rem;
@@ -268,7 +266,6 @@
 
         .btn{
             border:none;
-        ;
             padding:11px 20px;
             font-family:'Sora',sans-serif;
             font-weight:700;
@@ -303,7 +300,6 @@
         }
         .prefix-item{
             background:var(--purple);
-        
             padding:12px 16px;
             font-size:0.9rem;
             display:flex;
@@ -368,19 +364,19 @@
     <nav class="sidebar" id="sidebar">
         <div class="nav-section">
             <div class="nav-section-title">Navigation</div>
-            <a href="#situation-gains" class="nav-link active" data-section="situation-gains">
+            <a href="<?= base_url('operator/gains') ?>" class="nav-link <?= ($current_page === 'gains') ? 'active' : '' ?>">
                 <span class="nav-icon">📊</span>
                 <span>Situation des gains</span>
             </a>
-            <a href="#clients" class="nav-link" data-section="clients">
+            <a href="<?= base_url('operator/clients') ?>" class="nav-link <?= ($current_page === 'clients') ? 'active' : '' ?>">
                 <span class="nav-icon">👥</span>
                 <span>Comptes clients</span>
             </a>
-            <a href="#prefixes" class="nav-link" data-section="prefixes">
+            <a href="<?= base_url('operator/prefixes') ?>" class="nav-link <?= ($current_page === 'prefixes') ? 'active' : '' ?>">
                 <span class="nav-icon">🔢</span>
                 <span>Préfixes valables</span>
             </a>
-            <a href="#baremes" class="nav-link" data-section="baremes">
+            <a href="<?= base_url('operator/baremes') ?>" class="nav-link <?= ($current_page === 'baremes') ? 'active' : '' ?>">
                 <span class="nav-icon">💰</span>
                 <span>Barèmes des frais</span>
             </a>
@@ -388,133 +384,16 @@
     </nav>
 
     <div class="container">
-        <div class="page-header">
-            <span class="brand-dot"></span>
-            <div>
-                <p class="eyebrow">Backoffice</p>
-                <h1>Espace Opérateur Mobile Money</h1>
-            </div>
-        </div>
-
-        <!-- Situation des Gains -->
-        <div id="situation-gains" class="grid-2">
-            <div class="panel">
-                <div class="panel-header tone-pink">Situation des gains</div>
-                <div class="panel-body">
-                    <table>
-                        <thead><tr><th>Type d'opération</th><th>Total des gains</th></tr></thead>
-                        <tbody>
-                            <?php foreach($gains as $g): ?>
-                                <tr>
-                                    <td class="text-capitalize"><?= esc($g['type']) ?></td>
-                                    <td class="fw-bold"><?= number_format($g['total_frais'], 2, ',', ' ') ?> Ar</td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Situation des Comptes Clients -->
-            <div id="clients" class="panel">
-                <div class="panel-header tone-black">Situation des comptes clients</div>
-                <div class="panel-body scroll">
-                    <table>
-                        <thead><tr><th>Numéro de téléphone</th><th>Solde actuel</th></tr></thead>
-                        <tbody>
-                            <?php foreach($clients as $c): ?>
-                                <tr>
-                                    <td><?= esc($c['numero_telephone']) ?></td>
-                                    <td class="text-end fw-bold text-secondary"><?= number_format($c['solde'], 2, ',', ' ') ?> Ar</td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sections Prefixes et Baremes -->
-        <div class="grid-3">
-            <!-- Prefixe Valable -->
-            <div id="prefixes" class="panel">
-                <div class="panel-header tone-black">Préfixes valables</div>
-                <div class="panel-body">
-                    <form action="/operator/addPrefix" method="post" class="inline-form">
-                        <input type="text" name="prefixe" class="field" placeholder="Ex : 032" required maxlength="5">
-                        <button type="submit" class="btn">Ajouter</button>
-                    </form>
-                    <ul class="prefix-list">
-                        <?php foreach($prefixes as $p): ?>
-                            <li class="prefix-item">Numéros commençant par <strong><?= esc($p['prefixe']) ?></strong></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Baremes des Frais -->
-            <div id="baremes" class="panel">
-                <div class="panel-header tone-pink">Barèmes des frais par tranche</div>
-                <div class="panel-body">
-                    <form action="/operator/saveBareme" method="post" class="form-bareme">
-                        <select name="id_type_operation" class="field" required>
-                            <option value="2">Retrait</option>
-                            <option value="3">Transfert</option>
-                        </select>
-                        <input type="number" name="montant_min" class="field" placeholder="Min" required>
-                        <input type="number" name="montant_max" class="field" placeholder="Max" required>
-                        <input type="number" name="frais" class="field" placeholder="Frais" required>
-                        <button type="submit" class="btn btn-yellow">+</button>
-                    </form>
-
-                    <table>
-                        <thead>
-                            <tr><th>Type</th><th>Tranche montant</th><th>Frais</th></tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($baremes as $b): ?>
-                                <tr>
-                                    <td><span class="badge"><?= esc($b['type_nom']) ?></span></td>
-                                    <td>De <?= number_format($b['montant_min'], 0, ',', ' ') ?> à <?= number_format($b['montant_max'], 0, ',', ' ') ?> Ar</td>
-                                    <td class="fw-bold"><?= number_format($b['frais'], 0, ',', ' ') ?> Ar</td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+        <?= $this->renderSection('content') ?>
     </div>
 </div>
 
 <script>
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
-    const navLinks = document.querySelectorAll('.nav-link');
 
-    // Toggle sidebar on mobile
     menuToggle.addEventListener('click', function(){
         sidebar.classList.toggle('mobile-hidden');
-    });
-
-    // Close sidebar when a link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e){
-            e.preventDefault();
-            const section = this.getAttribute('data-section');
-            
-            // Update active link
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Scroll to section
-            const element = document.getElementById(section);
-            if(element){
-                element.scrollIntoView({behavior:'smooth'});
-                sidebar.classList.add('mobile-hidden');
-            }
-        });
     });
 </script>
 </body>
