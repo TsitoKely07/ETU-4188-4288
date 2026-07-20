@@ -1,3 +1,4 @@
 writable/logs/*.log
 writable/debugbar/*.json
 writable/database.sqlite
+.env
