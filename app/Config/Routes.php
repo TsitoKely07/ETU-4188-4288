@@ -18,20 +18,23 @@ $routes->get('operator', 'OperateurController::index');
 $routes->post('operator/addPrefix', 'OperateurController::addPrefix');
 $routes->post('operator/saveBareme', 'OperateurController::saveBareme');
 });
-// Connexion / Déconnexion
-$routes->get('/', [AuthController::class, 'login']);
-$routes->post('client/loginProcess', [AuthController::class, 'loginProcess']);
-$routes->get('client/logout', [AuthController::class, 'logout']);
 
-// Espace Client
-$routes->group('client', function($routes) {
-    $routes->get('dashboard', [DashboardController::class, 'index']);
-    
-    // Opérations
-    $routes->post('depot', [OperationController::class, 'depot']);
-    $routes->post('retrait', [OperationController::class, 'retrait']);
-    $routes->post('transfert', [OperationController::class, 'transfert']);
-    
-    // Historique
-    $routes->get('history', [HistoryController::class, 'index']);
+
+$routes->group('', ['namespace' => 'App\Controllers\Client'], static function ($routes) {
+    $routes->get('/', 'AuthController::login');
+    $routes->post('client/loginProcess', 'AuthController::loginProcess');
+    $routes->get('client/logout', 'AuthController::logout');
+
+    // Espace Client
+    $routes->group('client', function($routes) {
+        $routes->get('dashboard', 'DashboardController::index');
+        
+        // Opérations
+        $routes->post('depot', 'OperationController::depot');
+        $routes->post('retrait', 'OperationController::retrait');
+        $routes->post('transfert', 'OperationController::transfert');
+        
+        // Historique
+        $routes->get('history', 'HistoryController::index');
+    });
 });

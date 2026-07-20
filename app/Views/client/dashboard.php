@@ -16,7 +16,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container my-5">
 
     <!-- Messages Flash -->
     <?php if (session()->getFlashdata('error')): ?>
@@ -27,9 +27,9 @@
     <?php endif; ?>
 
     <!-- Solde -->
-    <div class="row mb-4">
+    <div class="row mb-5">
         <div class="col-md-12">
-            <div class="card text-white bg-success">
+            <div class="card shadow-sm text-white bg-success">
                 <div class="card-body text-center">
                     <h5 class="card-title">Solde Actuel</h5>
                     <h2 class="display-4"><?= number_format($client['solde'], 2, ',', ' ') ?> Ar</h2>

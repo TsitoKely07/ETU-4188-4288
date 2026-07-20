@@ -10,11 +10,11 @@ class DashboardController extends BaseClientController
 
         $clientId = session()->get('client')['id'];
 
-        // Rafraîchir le solde en session
+     
         $client = $this->db->table('compte_client')->where('id', $clientId)->get()->getRowArray();
         session()->set('client', $client);
 
-        // Récupération rapide des 5 dernières opérations
+ 
         $historiques = $this->db->query("
             SELECT h.*, t.nom as type_nom 
             FROM historique_operation h

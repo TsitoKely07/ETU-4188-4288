@@ -6,10 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-sm" style="width: 350px;">
-        <h4 class="card-title text-center mb-4">Mobile Money</h4>
-        
+<div class="container my-5 d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 4rem);">
+    <div class="card p-4 shadow-sm" style="width: 360px;">
+        <div class="card-header bg-primary text-white text-center mb-3">Connexion Client Mobile Money</div>
+
         <?php if (session()->getFlashdata('error')): ?>
             <div class="alert alert-danger p-2 text-center">
                 <?= session()->getFlashdata('error') ?>
