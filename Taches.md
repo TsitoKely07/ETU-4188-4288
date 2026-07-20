@@ -58,6 +58,43 @@ Pour entrer dans l'espace operateur
 # MOT DE PASSE : operateur123
 
 
+
+
+
+## VERSION 2
+### Moi (côté opérateur):
+1. Authentification
+Controller : app/Controllers/operator/AuthController.php
+login() — affiche la page de connexion
+loginProcess() — vérifie les identifiants (username/password via .env)
+logout() — déconnexion
+View : app/Views/operator/login.php — formulaire de connexion
+2. Dashboard / Layout principal
+View : app/Views/operator/layout.php
+Topbar avec le nom d'utilisateur connecté + bouton de déconnexion
+Sidebar responsive avec 6 liens de navigation :
+Situation des gains
+Comptes clients
+Préfixes valables
+Barèmes des frais
+Commissions inter-opérateurs
+Décompte opérateur
+Design moderne (Sora + Inter fonts), responsive mobile
+
+
+# BASE DE DONNEES:
+5. Base de données (via Migrations)
+Toutes les tables côté opérateur sont maintenant gérées par des migrations :
+
+operateur (id, nom, code)
+prefixe (code, id_operateur + FK)
+bareme_frais (type, tranche, frais, id_operateur, type_frais)
+commission_interoperateur (source, destination, pourcentage)
+decompte_operateur (opérateur, mois, montants, statut)
+
+
+
+
 Herizo a pris la gestion du côté client.
 Moi j'ai pris la gestion du côté opérateur.
 Il faut maintenir la même structure de tables entre les vues client et opérateur.
