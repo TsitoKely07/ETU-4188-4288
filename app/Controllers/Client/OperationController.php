@@ -15,7 +15,7 @@ class OperationController extends BaseClientController
             return redirect()->back()->with('error', 'Montant invalide.');
         }
 
-        // Débit/Crédit
+
         $this->db->query("UPDATE compte_client SET solde = solde + ? WHERE id = ?", [$montant, $clientId]);
 
         // Historique (Type 1 = Dépôt)

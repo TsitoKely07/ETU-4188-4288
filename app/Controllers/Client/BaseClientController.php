@@ -13,7 +13,7 @@ class BaseClientController extends BaseController
         $this->db = \Config\Database::connect();
     }
 
-    // Récupérer le barème de frais selon l'opération et le montant
+ 
     protected function getFrais(int $typeOpId, float $montant): float
     {
         $bareme = $this->db->table('bareme_frais')
@@ -25,7 +25,7 @@ class BaseClientController extends BaseController
         return $bareme ? (float)$bareme['frais'] : 0.0;
     }
 
-    // Vérifier si la session client est active
+
     protected function checkAuth()
     {
         if (!session()->has('client')) {

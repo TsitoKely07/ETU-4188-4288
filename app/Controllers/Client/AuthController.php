@@ -15,7 +15,6 @@ class AuthController extends BaseClientController
     {
         $numero = trim($this->request->getPost('numero'));
 
-        // 1. Validation du préfixe
         $prefixes = $this->db->table('prefixe')->get()->getResultArray();
         $valide = false;
 
@@ -30,7 +29,7 @@ class AuthController extends BaseClientController
             return redirect()->back()->with('error', 'Numéro invalide pour cet opérateur.');
         }
 
-        // 2. Vérification / Création automatique du compte
+
         $builder = $this->db->table('compte_client');
         $client = $builder->where('numero', $numero)->get()->getRowArray();
 
