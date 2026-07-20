@@ -39,8 +39,12 @@ Creation de PrefixeModel.php pour parler a la base de donnees
 
 ### Herizo:
 ### Herizo (côté client):
-
-
+#### Views
+creation du page login.php :pour l'iscription 
+creation du page dashboard.php pour afficher les card :depot ,retrait ,transfert et affiche les historiques
+#### Controllers
+creation des controller : pour manipiler le base pour le cote client ,chemin , le dashboard, l historique les calculs de retrait,transfert, ...   
+#### root
 
 # FRONT-END:
 
