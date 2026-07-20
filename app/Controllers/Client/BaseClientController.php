@@ -4,7 +4,7 @@ namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
 
-class BaseClientController extends BaseController
+class BaseClientControlleur extends BaseController
 {
     protected $db;
 

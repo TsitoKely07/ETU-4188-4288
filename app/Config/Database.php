@@ -29,7 +29,7 @@ class Database extends Config
         'hostname'     => '',
         'username'     => '',
         'password'     => '',
-        'database'     => 'WRITEPATH/database.sqlite',
+        'database'     => '/opt/lampp/htdocs/Projet-Final-Igniter/writable/database.sqlite',
         'DBDriver'     => 'SQLite3',
         'DBPrefix'     => '',
         'pConnect'     => false,
@@ -42,6 +42,7 @@ class Database extends Config
         'strictOn'     => false,
         'failover'     => [],
         'port'         => 3306,
+        'foreignKeys'  => true,
         'numberNative' => false,
         'foundRows'    => false,
         'dateFormat'   => [

@@ -2,7 +2,9 @@
 
 namespace App\Controllers\Client;
 
-class AuthController extends BaseClientController
+use App\Controllers\Client\BaseClientControlleur;
+
+class AuthController extends BaseClientControlleur
 {
     public function login()
     {
