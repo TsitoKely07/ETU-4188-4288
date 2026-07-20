@@ -25,9 +25,20 @@ class CreateBaremeFraisTable extends Migration
             'frais' => [
                 'type' => 'REAL',
             ],
+            'id_operateur' => [
+                'type'    => 'INTEGER',
+                'null'    => true,
+                'default' => null,
+            ],
+            'type_frais' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 50,
+                'default'    => 'standard',
+            ],
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('id_type_operation', 'type_operation', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_operateur', 'operateur', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('bareme_frais');
     }
 

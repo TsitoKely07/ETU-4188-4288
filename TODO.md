@@ -1,24 +1,20 @@
-# V2 Migration TODO
+# Plan de migration - Mise en place des Migrations pour toutes les tables
 
-## Step 1: Database Migration
-- [x] Apply V2 schema to existing database
+## Étapes à réaliser
 
-## Step 2: Operator Side
-- [x] Update OperateurController for prefixes with operator association
-- [x] Update prefixes.php view with operator selection
-- [x] Create commission management (controller method + view)
-- [x] Update gains display to split by own operator vs inter-operator
-- [x] Create decompte operateur (controller method + view)
+### 1. Créer les migrations manquantes
+- [x] `CreateOperateurTable` - Table operateur
+- [x] `CreateCommissionInteroperateurTable` - Table commission_interoperateur  
+- [x] `CreateDecompteOperateurTable` - Table decompte_operateur
 
-## Step 3: Client Side
-- [x] Update BaseClientController::getFrais() for operator-specific fees
-- [x] Update OperationController::transfert() for inter-operator detection
-- [x] Handle "no withdrawal fees for other operators"
-- [x] Update transfertMultiple similarly
+### 2. Mettre à jour les migrations existantes (incomplètes)
+- [x] `CreatePrefixeTable` - Ajouter id_operateur + FK
+- [x] `CreateBaremeFraisTable` - Ajouter id_operateur, type_frais
+- [x] `CreateHistoriqueOperationTable` - Ajouter id_operateur_destination, frais_retrait_inclus, montants_destinations, transaction_parent
 
-## Step 4: Routes
-- [x] Add new routes: /operator/commissions, /operator/decompte
+### 3. Mettre à jour le Seeder
+- [x] `InitialDataSeeder` - Ajouter toutes les données initiales complètes
 
-## Step 5: Layout
-- [x] Update operator sidebar with new links
+### 4. Tester
+- [ ] Exécuter les migrations avec `php spark migrate:refresh`
 

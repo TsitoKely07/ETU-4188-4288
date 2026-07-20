@@ -37,7 +37,6 @@ class OperateurController extends BaseController
 
         $data['current_page'] = 'gains';
 
-        // Gains des opérations propres à l'opérateur (retrait, transfert interne)
         $data['gains_propres'] = $this->db->query("
             SELECT t.nom as type, SUM(frais) as total_frais 
             FROM historique_operation tx
@@ -47,7 +46,7 @@ class OperateurController extends BaseController
             GROUP BY t.nom
         ")->getResultArray();
 
-        // Gains des commissions inter-opérateurs (transferts vers d'autres opérateurs)
+
         $data['gains_interoperateur'] = $this->db->query("
             SELECT o.nom AS operateur_dest, SUM(tx.frais) as total_commission
             FROM historique_operation tx

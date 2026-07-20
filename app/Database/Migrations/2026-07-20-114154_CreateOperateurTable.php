@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreatePrefixeTable extends Migration
+class CreateOperateurTable extends Migration
 {
     public function up()
     {
@@ -13,24 +13,24 @@ class CreatePrefixeTable extends Migration
                 'type'           => 'INTEGER',
                 'auto_increment' => true,
             ],
+            'nom' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 100,
+                'unique'     => true,
+            ],
             'code' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 10,
-            ],
-            'id_operateur' => [
-                'type'       => 'INTEGER',
+                'constraint' => 20,
                 'null'       => true,
-                'default'    => null,
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addUniqueKey(['code', 'id_operateur']);
-        $this->forge->addForeignKey('id_operateur', 'operateur', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('prefixe');
+        $this->forge->createTable('operateur');
     }
 
     public function down()
     {
-        $this->forge->dropTable('prefixe');
+        $this->forge->dropTable('operateur');
     }
 }
+

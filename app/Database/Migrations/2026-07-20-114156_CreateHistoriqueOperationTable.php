@@ -30,6 +30,25 @@ class CreateHistoriqueOperationTable extends Migration
                 'type'    => 'REAL',
                 'default' => 0.0,
             ],
+            'id_operateur_destination' => [
+                'type'    => 'INTEGER',
+                'null'    => true,
+                'default' => null,
+            ],
+            'frais_retrait_inclus' => [
+                'type'    => 'INTEGER',
+                'default' => 0,
+            ],
+            'montants_destinations' => [
+                'type'    => 'TEXT',
+                'null'    => true,
+                'default' => null,
+            ],
+            'transaction_parent' => [
+                'type'    => 'INTEGER',
+                'null'    => true,
+                'default' => null,
+            ],
             'date_operation' => [
                 'type'    => 'DATETIME',
                 'default' => new \CodeIgniter\Database\RawSql('CURRENT_TIMESTAMP'),
@@ -39,6 +58,7 @@ class CreateHistoriqueOperationTable extends Migration
         $this->forge->addForeignKey('id_compte_source', 'compte_client', 'id');
         $this->forge->addForeignKey('id_compte_dest', 'compte_client', 'id');
         $this->forge->addForeignKey('id_type_operation', 'type_operation', 'id');
+        $this->forge->addForeignKey('id_operateur_destination', 'operateur', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('historique_operation');
     }
 
