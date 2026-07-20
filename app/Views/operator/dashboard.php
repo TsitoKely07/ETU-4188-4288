@@ -9,12 +9,10 @@
 <div class="container my-5">
     <h1 class="mb-4">Backoffice Opérateur Mobile Money</h1>
 
-    <!-- SECTION SUPERVISION -->
     <div class="row mb-5">
-        <!-- Gains via les Frais -->
         <div class="col-md-6">
             <div class="card shadow-sm h-100">
-                <div class="card-header bg-success text-white">💰 Situation des Gains (Frais)</div>
+                <div class="card-header bg-success text-white">Situation des Gains</div>
                 <div class="card-body">
                     <table class="table table-striped align-middle">
                         <thead><tr><th>Type d'Opération</th><th>Total des Gains</th></tr></thead>
@@ -31,10 +29,9 @@
             </div>
         </div>
 
-        <!-- Situation des Comptes Clients -->
         <div class="col-md-6">
             <div class="card shadow-sm h-100">
-                <div class="card-header bg-primary text-white">👥 Situation des Comptes Clients</div>
+                <div class="card-header bg-primary text-white">Situation des Comptes Clients</div>
                 <div class="card-body" style="max-height: 250px; overflow-y: auto;">
                     <table class="table table-hover align-middle">
                         <thead><tr><th>Numéro de Téléphone</th><th>Solde Actuel</th></tr></thead>
@@ -52,12 +49,10 @@
         </div>
     </div>
 
-    <!-- SECTION CONFIGURATION -->
     <div class="row">
-        <!-- Gestion des Préfixes -->
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white">⚙️ Préfixes Valables</div>
+                <div class="card-header bg-dark text-white">Prefixe Valable</div>
                 <div class="card-body">
                     <form action="/operator/addPrefix" method="post" class="d-flex mb-3">
                         <input type="text" name="prefixe" class="form-control me-2" placeholder="Ex: 032" required maxlength="5">
@@ -74,12 +69,12 @@
             </div>
         </div>
 
-        <!-- Gestion des Barèmes de Frais -->
+
         <div class="col-md-8 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header bg-dark text-white">📊 Barèmes des Frais par Tranche</div>
+                <div class="card-header bg-dark text-white">Barèmes des Frais par Tranche</div>
                 <div class="card-body">
-                    <!-- Formulaire d'ajout rapide -->
+   
                     <form action="/operator/saveBareme" method="post" class="row g-2 mb-4">
                         <div class="col-md-3">
                             <select name="id_type_operation" class="form-select" required>

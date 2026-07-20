@@ -16,10 +16,10 @@ class OperateurController extends BaseController
         $this->db = \Config\Database::connect();
     }
 
-    // Tableau de bord principal de l'opérateur
+
     public function index()
     {
-        // 1. Situation des gains (frais cumulés)
+
         $data['gains'] = $this->db->query("
             SELECT t.nom as type, SUM(frais) as total_frais 
             FROM historique_operation tx
@@ -28,14 +28,14 @@ class OperateurController extends BaseController
             GROUP BY t.nom
         ")->getResultArray();
 
-        // 2. Situation des comptes clients
+
         $data['clients'] = $this->db->query("
             SELECT numero AS numero_telephone, solde 
             FROM compte_client 
             ORDER BY solde DESC
         ")->getResultArray();
 
-        // 3. Récupérer les configurations actuelles
+
         $data['prefixes'] = $this->db->query("SELECT id, code AS prefixe FROM prefixe")->getResultArray();
         $data['baremes'] = $this->db->query("
             SELECT b.*, t.nom as type_nom 
@@ -47,7 +47,7 @@ class OperateurController extends BaseController
         return view('operator/dashboard', $data);
     }
 
-    // Ajouter un préfixe (ex: 034, 032, 038)
+
     public function addPrefix()
     {
         $prefix = $this->request->getPost('prefixe');
@@ -57,7 +57,7 @@ class OperateurController extends BaseController
         return redirect()->to('/operator');
     }
 
-    // Modifier ou ajouter une tranche de frais
+
     public function saveBareme()
     {
         $id_type = $this->request->getPost('id_type_operation');
