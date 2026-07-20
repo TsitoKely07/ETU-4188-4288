@@ -365,27 +365,27 @@
         <div class="nav-section">
             <div class="nav-section-title">Navigation</div>
             <a href="<?= base_url('operator/gains') ?>" class="nav-link <?= ($current_page === 'gains') ? 'active' : '' ?>">
-                <span class="nav-icon">📊</span>
+                <span class="nav-icon"></span>
                 <span>Situation des gains</span>
             </a>
             <a href="<?= base_url('operator/clients') ?>" class="nav-link <?= ($current_page === 'clients') ? 'active' : '' ?>">
-                <span class="nav-icon">👥</span>
+                <span class="nav-icon"></span>
                 <span>Comptes clients</span>
             </a>
             <a href="<?= base_url('operator/prefixes') ?>" class="nav-link <?= ($current_page === 'prefixes') ? 'active' : '' ?>">
-                <span class="nav-icon">🔢</span>
+                <span class="nav-icon"></span>
                 <span>Préfixes valables</span>
             </a>
             <a href="<?= base_url('operator/baremes') ?>" class="nav-link <?= ($current_page === 'baremes') ? 'active' : '' ?>">
-                <span class="nav-icon">💰</span>
+                <span class="nav-icon"></span>
                 <span>Barèmes des frais</span>
             </a>
             <a href="<?= base_url('operator/commissions') ?>" class="nav-link <?= ($current_page === 'commissions') ? 'active' : '' ?>">
-                <span class="nav-icon">🔄</span>
+                <span class="nav-icon"></span>
                 <span>Commissions inter-opérateurs</span>
             </a>
             <a href="<?= base_url('operator/decompte') ?>" class="nav-link <?= ($current_page === 'decompte') ? 'active' : '' ?>">
-                <span class="nav-icon">📋</span>
+                <span class="nav-icon"></span>
                 <span>Décompte opérateur</span>
             </a>
         </div>

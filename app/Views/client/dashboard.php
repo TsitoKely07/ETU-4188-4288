@@ -377,7 +377,7 @@
             <h3 class="action-title">Dépôt</h3>
             <form action="<?= base_url('client/depot') ?>" method="post">
                 <label>Montant (Ar)</label>
-                <input type="number" step="100" name="montant" class="form-control" placeholder="1000Ar" required>
+                <input type="number" step="0.01" name="montant" class="form-control" placeholder="1000Ar" required>
                 <button type="submit" class="btn-action">Déposer</button>
             </form>
         </div>
@@ -387,7 +387,7 @@
             <h3 class="action-title">Retrait</h3>
             <form action="<?= base_url('client/retrait') ?>" method="post">
                 <label>Montant (Ar)</label>
-                <input type="number" step="100" name="montant" class="form-control" placeholder="1000Ar" required>
+                <input type="number" step="0.01" name="montant" class="form-control" placeholder="1000Ar" required>
                 <button type="submit" class="btn-action">Retirer</button>
             </form>
         </div>
@@ -399,7 +399,7 @@
                 <label>N° destinataire</label>
                 <input type="text" name="numero_dest" class="form-control" placeholder="ex : 0331234567" required>
                 <label>Montant (Ar)</label>
-                <input type="number" step="100" name="montant" class="form-control" placeholder="1000Ar" required>
+                <input type="number" step="0.01" name="montant" class="form-control" placeholder="1000Ar" required>
                 
                 <label class="checkbox-container">
                     <input type="checkbox" name="inclure_frais_retrait" value="1">
