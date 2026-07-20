@@ -22,25 +22,25 @@ class OperateurController extends BaseController
         // 1. Situation des gains (frais cumulés)
         $data['gains'] = $this->db->query("
             SELECT t.nom as type, SUM(frais) as total_frais 
-            FROM transactions tx
-            JOIN types_operation t ON tx.id_type_operation = t.id
+            FROM historique_operation tx
+            JOIN type_operation t ON tx.id_type_operation = t.id
             WHERE t.nom IN ('retrait', 'transfert')
             GROUP BY t.nom
         ")->getResultArray();
 
         // 2. Situation des comptes clients
         $data['clients'] = $this->db->query("
-            SELECT numero_telephone, solde 
-            FROM clients 
+            SELECT numero AS numero_telephone, solde 
+            FROM compte_client 
             ORDER BY solde DESC
         ")->getResultArray();
 
         // 3. Récupérer les configurations actuelles
-        $data['prefixes'] = $this->db->query("SELECT * FROM prefixes")->getResultArray();
+        $data['prefixes'] = $this->db->query("SELECT id, code AS prefixe FROM prefixe")->getResultArray();
         $data['baremes'] = $this->db->query("
             SELECT b.*, t.nom as type_nom 
-            FROM baremes_frais b
-            JOIN types_operation t ON b.id_type_operation = t.id
+            FROM bareme_frais b
+            JOIN type_operation t ON b.id_type_operation = t.id
             ORDER BY b.id_type_operation, b.montant_min
         ")->getResultArray();
 
@@ -52,7 +52,7 @@ class OperateurController extends BaseController
     {
         $prefix = $this->request->getPost('prefixe');
         if (!empty($prefix)) {
-            $this->db->query("INSERT OR IGNORE INTO prefixes (prefixe) VALUES (?)", [$prefix]);
+            $this->db->query("INSERT OR IGNORE INTO prefixe (code) VALUES (?)", [$prefix]);
         }
         return redirect()->to('/operator');
     }
@@ -66,7 +66,7 @@ class OperateurController extends BaseController
         $frais = $this->request->getPost('frais');
 
         $this->db->query("
-            INSERT INTO baremes_frais (id_type_operation, montant_min, montant_max, frais) 
+            INSERT INTO bareme_frais (id_type_operation, montant_min, montant_max, frais) 
             VALUES (?, ?, ?, ?)
         ", [$id_type, $min, $max, $frais]);
 
