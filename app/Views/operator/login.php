@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mobile Money - Connexion</title>
+    <title>Opérateur - Connexion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root{
             --bg:#F7F6F2;
             --pink:#00BFFF;
-            --yellow:#FFC72C;
-            --purple:#C9BEFF;
             --black:#0F0F10;
             --gray:#6B6A70;
         }
@@ -19,7 +17,7 @@
         body{
             margin:0;
             min-height:100vh;
-            font-family:'Inter' ,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+            font-family:'Inter',sans-serif;
             color:var(--black);
             background:
                 radial-gradient(circle at 15% 20%, rgba(255,31,109,0.10), transparent 40%),
@@ -33,10 +31,10 @@
         }
         .auth-card{
             width:100%;
-            max-width:400px;
+            max-width:420px;
             background:#fff;
-            
             padding:40px 36px;
+            border-radius:18px;
             box-shadow:0 20px 45px -20px rgba(15,15,16,0.18);
             border:1px solid rgba(15,15,16,0.06);
         }
@@ -47,29 +45,21 @@
             margin-bottom:28px;
         }
         .brand-dot{
-            width:14px;height:14px;            background:var(--pink);
+            width:14px;
+            height:14px;
+            background:var(--pink);
+            border-radius:50%;
         }
         .brand-name{
-            font-family:'Inter' ,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
             font-weight:800;
             font-size:1.05rem;
             letter-spacing:-0.02em;
         }
         h1{
-            font-family:'Inter' ,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
             font-weight:800;
-            font-size:1.9rem;
-            line-height:1.15;
+            font-size:1.85rem;
             margin:0 0 6px;
             letter-spacing:-0.02em;
-        }
-        h1 .pill{
-            display:inline-block;
-            background:var(--pink);
-            color:#fff;
-            ;
-            padding:2px 14px;
-            font-size:1.6rem;
         }
         p.subtitle{
             color:var(--gray);
@@ -77,7 +67,6 @@
             margin:0 0 28px;
         }
         .alert{
-            
             padding:12px 16px;
             font-size:0.9rem;
             margin-bottom:20px;
@@ -98,9 +87,7 @@
         .form-control{
             width:100%;
             border:1.5px solid #E7E5E0;
-            
             padding:14px 16px;
-            font-family:'Inter' ,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
             font-size:1rem;
             background:#FAFAF8;
             outline:none;
@@ -114,10 +101,8 @@
         .btn-submit{
             width:100%;
             border:none;
-            ;
             background:var(--black);
             color:#fff;
-            font-family:'Inter' ,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
             font-weight:700;
             font-size:1rem;
             padding:15px;
@@ -130,9 +115,13 @@
         }
         .foot-note{
             text-align:center;
-            font-size:0.8rem;
+            font-size:0.9rem;
             color:var(--gray);
             margin-top:22px;
+        }
+        .foot-note a{
+            color:var(--pink);
+            text-decoration:none;
         }
     </style>
 </head>
@@ -143,8 +132,8 @@
         <span class="brand-name">Mobile Money</span>
     </div>
 
-    <h1>Content de te <span class="pill">revoir</span></h1>
-    <p class="subtitle">Connecte-toi avec ton numéro pour accéder à ton espace client.</p>
+    <h1>Connexion opérateur</h1>
+    <p class="subtitle">Accédez au backoffice opérateur avec vos identifiants sécurisés.</p>
 
     <?php if (session()->getFlashdata('error')): ?>
         <div class="alert alert-danger">
@@ -152,16 +141,20 @@
         </div>
     <?php endif; ?>
 
-    <form action="<?= base_url('client/loginProcess') ?>" method="post">
+    <form action="<?= base_url('operator/loginProcess') ?>" method="post">
         <div class="mb-3">
-            <label for="numero">Numéro de téléphone</label>
-            <input type="text" id="numero" name="numero" class="form-control" placeholder="ex : 0331234567" required>
+            <label for="username">Identifiant</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Identifiant" required>
+        </div>
+        <div class="mb-3">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Mot de passe" required>
         </div>
         <button type="submit" class="btn-submit">Se connecter</button>
     </form>
 
     <p class="foot-note">
-        Vous êtes opérateur ? <a href="<?= base_url('operator/login') ?>">Connectez-vous ici</a> pour accéder à l'interface opérateur.
+        Vous n'êtes pas opérateur ? <a href="<?= base_url('/') ?>">Retour à la connexion client</a>.
     </p>
 </div>
 </body>

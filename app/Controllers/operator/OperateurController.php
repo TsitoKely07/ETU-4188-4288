@@ -16,9 +16,18 @@ class OperateurController extends BaseController
         $this->db = \Config\Database::connect();
     }
 
+    protected function checkAuth()
+    {
+        if (!session()->has('operator')) {
+            return redirect()->to('/operator/login');
+        }
+
+        return null;
+    }
 
     public function index()
     {
+        if ($redirect = $this->checkAuth()) return $redirect;
 
         $data['gains'] = $this->db->query("
             SELECT t.nom as type, SUM(frais) as total_frais 
@@ -50,6 +59,8 @@ class OperateurController extends BaseController
 
     public function addPrefix()
     {
+        if ($redirect = $this->checkAuth()) return $redirect;
+
         $prefix = $this->request->getPost('prefixe');
         if (!empty($prefix)) {
             $this->db->query("INSERT OR IGNORE INTO prefixe (code) VALUES (?)", [$prefix]);
@@ -60,6 +71,8 @@ class OperateurController extends BaseController
 
     public function saveBareme()
     {
+        if ($redirect = $this->checkAuth()) return $redirect;
+
         $id_type = $this->request->getPost('id_type_operation');
         $min = $this->request->getPost('montant_min');
         $max = $this->request->getPost('montant_max');

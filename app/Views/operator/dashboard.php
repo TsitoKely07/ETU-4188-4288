@@ -23,6 +23,42 @@
             background:var(--bg);
         }
 
+        .topbar{
+            background:#0f172a;
+            color:#fff;
+        }
+        .topbar-inner{
+            max-width:1180px;
+            margin:0 auto;
+            padding:18px 24px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:12px;
+        }
+        .title{
+            font-weight:700;
+            font-size:1rem;
+        }
+        .operator-actions{
+            display:flex;
+            align-items:center;
+            gap:14px;
+            flex-wrap:wrap;
+        }
+        .topbar-logout{
+            display:inline-block;
+            border:1px solid rgba(255,255,255,0.65);
+            color:#fff;
+            text-decoration:none;
+            padding:8px 14px;
+            border-radius:10px;
+            transition:background .15s ease;
+        }
+        .topbar-logout:hover{
+            background:rgba(255,255,255,0.08);
+        }
+
         .container{
             max-width:1180px;
             margin:0 auto;
@@ -201,6 +237,17 @@
     </style>
 </head>
 <body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <div class="title">Espace Opérateur</div>
+        <div class="operator-actions">
+            <?php if (session()->has('operator')): ?>
+                <span>Connecté comme <strong><?= esc(session()->get('operator')['username']) ?></strong></span>
+            <?php endif; ?>
+            <a href="<?= base_url('operator/logout') ?>" class="topbar-logout">Déconnexion</a>
+        </div>
+    </div>
+</header>
 <div class="container">
 
     <div class="page-header">

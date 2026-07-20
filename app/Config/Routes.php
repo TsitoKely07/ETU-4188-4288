@@ -14,9 +14,13 @@ use App\Controllers\Client\OperationController;
 use App\Controllers\Client\HistoryController;
 
 $routes->group('', ['namespace' => 'App\Controllers\operator'], static function ($routes) {
-$routes->get('operator', 'OperateurController::index');
-$routes->post('operator/addPrefix', 'OperateurController::addPrefix');
-$routes->post('operator/saveBareme', 'OperateurController::saveBareme');
+    $routes->get('operator/login', 'AuthController::login');
+    $routes->post('operator/loginProcess', 'AuthController::loginProcess');
+    $routes->get('operator/logout', 'AuthController::logout');
+
+    $routes->get('operator', 'OperateurController::index');
+    $routes->post('operator/addPrefix', 'OperateurController::addPrefix');
+    $routes->post('operator/saveBareme', 'OperateurController::saveBareme');
 });
 
 
