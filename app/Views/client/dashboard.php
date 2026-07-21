@@ -263,7 +263,7 @@
         }
         .card-transfert-multiple {
     border: none;
-    border-radius: 12px;
+    ;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     background: #ffffff;
     overflow: hidden;
@@ -306,7 +306,7 @@
 }
 
 .card-transfert-multiple .form-control {
-    border-radius: 8px;
+    
     border: 1px solid #d1d5db;
     padding: 10px 14px;
     transition: all 0.2s ease-in-out;
@@ -321,7 +321,7 @@
     background-color: #e0e7ff;
     color: #3730a3;
     padding: 8px 12px;
-    border-radius: 6px;
+    
     font-size: 0.85rem;
     margin-top: 4px;
 }
@@ -330,7 +330,7 @@
     background: linear-gradient(135deg, #4f46e5, #3b82f6);
     color: #ffffff;
     border: none;
-    border-radius: 8px;
+    
     padding: 12px;
     font-weight: 600;
     width: 100%;

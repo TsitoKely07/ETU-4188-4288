@@ -45,7 +45,7 @@
                 </small>
             </div>
 
-            <!-- Case à cocher pour les frais de retrait -->
+
             <div class="form-check mb-4">
                 <input 
                     type="checkbox" 
