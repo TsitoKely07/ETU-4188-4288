@@ -140,6 +140,7 @@
         .action-card.retrait{ background:var(--yellow); }
         .action-card.transfert{ background:var(--black); color:#fff; }
         .action-card.transfert-multiple{ background:var(--orange); color:#fff; }
+        
         .action-title{
             font-family: 'inter';
             font-weight:700;
@@ -164,10 +165,7 @@
             outline:none;
             margin-bottom:14px;
         }
-        textarea.form-control{
-            resize: vertical;
-            min-height: 48px;
-        }
+
         .action-card.transfert .form-control,
         .action-card.transfert-multiple .form-control{
             background:rgba(255,255,255,0.15);
@@ -208,6 +206,7 @@
             background:var(--black);
             color:#fff;
             transition:transform .12s ease;
+            width: 100%;
         }
         .action-card.transfert .btn-action,
         .action-card.transfert-multiple .btn-action{
@@ -261,86 +260,6 @@
             color:var(--gray);
             padding:32px 24px;
         }
-        .card-transfert-multiple {
-    border: none;
-    ;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    background: #ffffff;
-    overflow: hidden;
-    margin-top: 25px;
-}
-
-.card-transfert-multiple .card-header {
-    background: linear-gradient(135deg, #4f46e5, #3b82f6);
-    color: #ffffff;
-    padding: 16px 20px;
-    border: none;
-}
-
-.card-transfert-multiple .card-header h5 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 1.15rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.card-transfert-multiple .destinataires-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-@media (max-width: 576px) {
-    .card-transfert-multiple .destinataires-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.card-transfert-multiple .form-label {
-    font-weight: 600;
-    color: #374151;
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-}
-
-.card-transfert-multiple .form-control {
-    
-    border: 1px solid #d1d5db;
-    padding: 10px 14px;
-    transition: all 0.2s ease-in-out;
-}
-
-.card-transfert-multiple .form-control:focus {
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-}
-
-.card-transfert-multiple .info-badge {
-    background-color: #e0e7ff;
-    color: #3730a3;
-    padding: 8px 12px;
-    
-    font-size: 0.85rem;
-    margin-top: 4px;
-}
-
-.card-transfert-multiple .btn-submit-multi {
-    background: linear-gradient(135deg, #4f46e5, #3b82f6);
-    color: #ffffff;
-    border: none;
-    
-    padding: 12px;
-    font-weight: 600;
-    width: 100%;
-    transition: background 0.2s ease;
-}
-
-.card-transfert-multiple .btn-submit-multi:hover {
-    background: linear-gradient(135deg, #4338ca, #2563eb);
-    color: #ffffff;
-}
     </style>
 </head>
 <body>
@@ -410,76 +329,31 @@
             </form>
         </div>
 
-        <!-- Transfert Multiple (Nouveau pour v2) --><div class="card card-transfert-multiple">
-    <div class="card-header">
-        <h5> Transfert Multiple (2 Destinataires)</h5>
-    </div>
-    <div class="card-body p-4">
-        
-        <form action="<?= base_url('client/transfert-multiple') ?>" method="post">
-            <?= csrf_field() ?>
+        <!-- Transfert Multiple -->
+        <div class="action-card transfert-multiple">
+            <h3 class="action-title">Transfert Multiple (2 Destinataires)</h3>
+            <form action="<?= base_url('client/transfert-multiple') ?>" method="post">
+                <?= csrf_field() ?>
 
-            <!-- Grille des destinataires -->
-            <div class="destinataires-grid mb-3">
-                <div>
-                    <label for="numero_dest_1" class="form-label">Numéro Destinataire 1</label>
-                    <input 
-                        type="text" 
-                        name="numero_dest_1" 
-                        id="numero_dest_1" 
-                        class="form-control" 
-                        placeholder="Ex: 0331234567" 
-                        required>
-                </div>
+                <label>Numéro Destinataire 1</label>
+                <input type="text" name="numero_dest_1" class="form-control" placeholder="Ex: 0331234567" required>
 
-                <div>
-                    <label for="numero_dest_2" class="form-label">Numéro Destinataire 2</label>
-                    <input 
-                        type="text" 
-                        name="numero_dest_2" 
-                        id="numero_dest_2" 
-                        class="form-control" 
-                        placeholder="Ex: 0379876543" 
-                        required>
-                </div>
-            </div>
+                <label>Numéro Destinataire 2</label>
+                <input type="text" name="numero_dest_2" class="form-control" placeholder="Ex: 0379876543" required>
 
-            <!-- Montant pour CHACUN -->
-            <div class="mb-3">
-                <label for="montant_multi" class="form-label">Montant à envoyer à CHACUN (Ar)</label>
-                <input 
-                    type="number" 
-                    step="0.01" 
-                    name="montant" 
-                    id="montant_multi" 
-                    class="form-control" 
-                    placeholder="Ex: 50000" 
-                    required>
-                <div class="info-badge">
-                     Chaque destinataire recevra l'intégralité de ce montant.
-                </div>
-            </div>
+                <label>Montant à envoyer à CHACUN (Ar)</label>
+                <input type="number" step="100" name="montant" class="form-control" placeholder="Ex: 50000" required>
 
-            <!-- Option Frais de retrait -->
-            <div class="form-check mb-4">
-                <input 
-                    type="checkbox" 
-                    name="inclure_frais_retrait" 
-                    id="inclure_frais_retrait_multi" 
-                    value="1" 
-                    class="form-check-input">
-                <label class="form-check-label" for="inclure_frais_retrait_multi">
-                    Prendre en charge (offrir) les frais de retrait pour les 2 personnes
+                <label class="checkbox-container">
+                    <input type="checkbox" name="inclure_frais_retrait" value="1">
+                    <span>Inclure frais de retrait pour les 2 personnes</span>
                 </label>
-            </div>
 
-            <button type="submit" class="btn btn-submit-multi">
-                Envoyer aux 2 destinataires
-            </button>
-        </form>
-
+                <button type="submit" class="btn-action">Envoyer à chacun</button>
+            </form>
+        </div>
     </div>
-</div>
+
     <!-- Historique des opérations -->
     <div class="history-card">
         <div class="history-header">Historique des opérations</div>
