@@ -73,6 +73,8 @@ class OperationController extends BaseClientController
             return redirect()->back()->with('error', 'Montant invalide.');
         }
 
+        
+
         $destinataire = $this->db->table('compte_client')->where('numero', $destNumero)->get()->getRowArray();
         
         if (!$destinataire) {
@@ -82,6 +84,8 @@ class OperationController extends BaseClientController
         if ($destinataire['id'] == $clientId) {
             return redirect()->back()->with('error', 'Vous ne pouvez pas faire un transfert vers vous-même.');
         }
+
+
 
         // Détection opérateur source et destination
         $operateurSource = $this->getOperateurFromNumero($clientNumero);
@@ -107,6 +111,8 @@ class OperationController extends BaseClientController
             $commissionMontant = 0.0;
             $operateurDest = null; // Pas d'opérateur destination spécifique
         }
+
+
 
         $totalFrais = $fraisTransfert + $fraisRetrait + $commissionMontant;
         $totalAEnleverExpediteur = $montant + $totalFrais;
@@ -272,5 +278,11 @@ class OperationController extends BaseClientController
         }
 
         return redirect()->to('/client/dashboard')->with('success', $msg);
+    }
+
+    public function Promotion(){
+        if ($redirect = $this->checkAuth()) return $redirect;
+
+        
     }
 }

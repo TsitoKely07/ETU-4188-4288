@@ -49,11 +49,15 @@ CREATE TABLE bareme_frais (
     montant_min REAL NOT NULL,
     montant_max REAL NOT NULL,
     frais REAL NOT NULL,
+    pourcentage_promotion INTEGER,
     id_operateur INTEGER DEFAULT NULL, -- si NULL = barème propre, sinon barème pour transferts vers cet opérateur
     type_frais VARCHAR(50) DEFAULT 'standard', -- ex: 'retrait', 'transfert_interne', 'transfert_externe'
     FOREIGN KEY (id_type_operation) REFERENCES type_operation(id),
     FOREIGN KEY (id_operateur) REFERENCES operateur(id)
 );
+
+
+
 
 INSERT INTO bareme_frais (id_type_operation, montant_min, montant_max, frais, id_operateur, type_frais) VALUES 
 (2, 1000, 10000, 200, NULL, 'retrait'), 

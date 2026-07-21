@@ -153,6 +153,11 @@
         <button type="submit" class="btn-submit">Se connecter</button>
     </form>
 
+    <div class="mb-3">
+        <p>Identifiant:operateur</p>
+        <p>Mot de passe:operateur123</p>
+    </div>
+
     <p class="foot-note">
         Vous n'êtes pas opérateur ? <a href="<?= base_url('/') ?>">Retour à la connexion client</a>.
     </p>
