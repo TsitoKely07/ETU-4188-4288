@@ -121,41 +121,83 @@
             margin:0;
         }
 
-        /* ACTIONS */
-        .actions-grid{
-            display:grid;
-            grid-template-columns:repeat(2, 1fr);
-            gap:20px;
-            margin-bottom:32px;
+        /* NAVIGATION BAR DES ACTIONS (TABS) */
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
         }
-        @media (max-width:860px){
-            .actions-grid{ grid-template-columns:1fr; }
+        .tab-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 14px 18px;
+            border: none;
+            font-family: 'Inter';
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: #fff;
+            color: var(--black);
+            border: 1px solid rgba(15,15,16,0.08);
+            transition: all .15s ease;
         }
-        .action-card{
-            padding:26px;
-            display:flex;
-            flex-direction:column;
+        .tab-btn:hover {
+            transform: translateY(-2px);
         }
-        .action-card.depot{ background:var(--purple); }
-        .action-card.retrait{ background:var(--yellow); }
-        .action-card.transfert{ background:var(--black); color:#fff; }
-        .action-card.transfert-multiple{ background:var(--orange); color:#fff; }
+        /* Styles actifs personnalisés selon le type d'opération */
+        .tab-btn[data-tab="depot"].active {
+            background: var(--purple);
+            border-color: var(--purple);
+            color: var(--black);
+        }
+        .tab-btn[data-tab="retrait"].active {
+            background: var(--yellow);
+            border-color: var(--yellow);
+            color: var(--black);
+        }
+        .tab-btn[data-tab="transfert"].active {
+            background: var(--black);
+            border-color: var(--black);
+            color: #fff;
+        }
+        .tab-btn[data-tab="transfert-multiple"].active {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #fff;
+        }
+
+        /* CONTENEURS DE FORMULAIRE (PANELS) */
+        .action-card {
+            padding: 32px;
+            display: none; /* Masqué par défaut */
+            flex-direction: column;
+            margin-bottom: 32px;
+        }
+        .action-card.active {
+            display: flex; /* Affiché quand actif */
+        }
+
+        .action-card.depot { background:var(--purple); }
+        .action-card.retrait { background:var(--yellow); }
+        .action-card.transfert { background:var(--black); color:#fff; }
+        .action-card.transfert-multiple { background:var(--orange); color:#fff; }
         
-        .action-title{
+        .action-title {
             font-family: 'inter';
             font-weight:700;
-            font-size:1.1rem;
-            margin:0 0 18px;
+            font-size:1.2rem;
+            margin:0 0 20px;
             letter-spacing:-0.01em;
         }
-        .action-card label{
-            font-size:0.8rem;
+        .action-card label {
+            font-size:0.85rem;
             font-weight:600;
             margin-bottom:6px;
             display:block;
             opacity:0.85;
         }
-        .form-control{
+        .form-control {
             width:100%;
             border:none;
             padding:12px 14px;
@@ -163,42 +205,42 @@
             font-size:0.95rem;
             background:rgba(255,255,255,0.85);
             outline:none;
-            margin-bottom:14px;
+            margin-bottom:16px;
         }
 
         .action-card.transfert .form-control,
-        .action-card.transfert-multiple .form-control{
+        .action-card.transfert-multiple .form-control {
             background:rgba(255,255,255,0.15);
             color:#fff;
         }
         .action-card.transfert .form-control::placeholder,
-        .action-card.transfert-multiple .form-control::placeholder{ 
+        .action-card.transfert-multiple .form-control::placeholder { 
             color:rgba(255,255,255,0.6); 
         }
 
         /* CHECKBOX OPTION */
-        .checkbox-container{
+        .checkbox-container {
             display:flex;
             align-items:center;
             gap:8px;
-            margin-bottom:16px;
+            margin-bottom:20px;
             cursor:pointer;
         }
-        .checkbox-container input[type="checkbox"]{
+        .checkbox-container input[type="checkbox"] {
             width:16px;
             height:16px;
             cursor:pointer;
         }
-        .checkbox-container span{
-            font-size:0.8rem;
+        .checkbox-container span {
+            font-size:0.85rem;
             font-weight:500;
             opacity:0.9;
         }
 
-        .btn-action{
+        .btn-action {
             margin-top:auto;
             border:none;
-            padding:13px;
+            padding:14px;
             font-family: 'inter';
             font-weight:700;
             font-size:0.95rem;
@@ -209,29 +251,29 @@
             width: 100%;
         }
         .action-card.transfert .btn-action,
-        .action-card.transfert-multiple .btn-action{
+        .action-card.transfert-multiple .btn-action {
             background:#fff;
             color:var(--black);
         }
-        .btn-action:hover{ transform:translateY(-1px); }
+        .btn-action:hover { transform:translateY(-1px); }
 
         /* HISTORIQUE */
-        .history-card{
+        .history-card {
             background:#fff;
             padding:8px 8px 4px;
             border:1px solid rgba(15,15,16,0.06);
         }
-        .history-header{
+        .history-header {
             font-family: 'inter';
             font-weight:700;
             font-size:1.05rem;
             padding:20px 24px 4px;
         }
-        table{
+        table {
             width:100%;
             border-collapse:collapse;
         }
-        thead th{
+        thead th {
             text-align:left;
             font-size:0.75rem;
             text-transform:uppercase;
@@ -241,13 +283,13 @@
             padding:14px 24px;
             border-bottom:1px solid rgba(15,15,16,0.06);
         }
-        tbody td{
+        tbody td {
             padding:16px 24px;
             font-size:0.92rem;
             border-bottom:1px solid rgba(15,15,16,0.05);
         }
-        tbody tr:last-child td{ border-bottom:none; }
-        .badge{
+        tbody tr:last-child td { border-bottom:none; }
+        .badge {
             display:inline-block;
             padding:5px 14px;
             font-size:0.78rem;
@@ -255,7 +297,7 @@
             background:var(--purple);
             color:var(--black);
         }
-        .empty-row{
+        .empty-row {
             text-align:center;
             color:var(--gray);
             padding:32px 24px;
@@ -289,48 +331,70 @@
         </div>
     </div>
 
-    <!-- Formulaires d'actions -->
-    <div class="actions-grid">
+    <!-- BOUTONS DE NAVIGATION DES OPERATIONS -->
+    <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="depot">Dépôt</button>
+        <button class="tab-btn" data-tab="retrait">Retrait</button>
+        <button class="tab-btn" data-tab="transfert">Transfert Simple</button>
+        <button class="tab-btn" data-tab="transfert-multiple">Transfert Multiple</button>
+    </div>
+
+    <!-- CONTENEURS DE FORMULAIRES -->
+    <div class="actions-wrapper">
         <!-- Dépôt -->
-        <div class="action-card depot">
-            <h3 class="action-title">Dépôt</h3>
+        <div class="action-card depot active" id="tab-depot">
+            <h3 class="action-title">Dépôt d'argent</h3>
             <form action="<?= base_url('client/depot') ?>" method="post">
                 <label>Montant (Ar)</label>
+<<<<<<< HEAD
                 <input type="number" step="0.01" name="montant" class="form-control" placeholder="1000Ar" required>
                 <button type="submit" class="btn-action">Déposer</button>
+=======
+                <input type="number" step="0.01" name="montant" class="form-control" placeholder="Ex: 10000" required>
+                <button type="submit" class="btn-action">Valider le dépôt</button>
+>>>>>>> b8089328fad1b4119a57f6615231dc654935b95a
             </form>
         </div>
 
         <!-- Retrait -->
-        <div class="action-card retrait">
-            <h3 class="action-title">Retrait</h3>
+        <div class="action-card retrait" id="tab-retrait">
+            <h3 class="action-title">Retrait d'argent</h3>
             <form action="<?= base_url('client/retrait') ?>" method="post">
                 <label>Montant (Ar)</label>
+<<<<<<< HEAD
                 <input type="number" step="0.01" name="montant" class="form-control" placeholder="1000Ar" required>
                 <button type="submit" class="btn-action">Retirer</button>
+=======
+                <input type="number" step="0.01" name="montant" class="form-control" placeholder="Ex: 5000" required>
+                <button type="submit" class="btn-action">Valider le retrait</button>
+>>>>>>> b8089328fad1b4119a57f6615231dc654935b95a
             </form>
         </div>
 
         <!-- Transfert Simple -->
-        <div class="action-card transfert">
+        <div class="action-card transfert" id="tab-transfert">
             <h3 class="action-title">Transfert Simple</h3>
             <form action="<?= base_url('client/transfert') ?>" method="post">
                 <label>N° destinataire</label>
                 <input type="text" name="numero_dest" class="form-control" placeholder="ex : 0331234567" required>
                 <label>Montant (Ar)</label>
+<<<<<<< HEAD
                 <input type="number" step="0.01" name="montant" class="form-control" placeholder="1000Ar" required>
+=======
+                <input type="number" step="0.01" name="montant" class="form-control" placeholder="Ex: 20000" required>
+>>>>>>> b8089328fad1b4119a57f6615231dc654935b95a
                 
                 <label class="checkbox-container">
                     <input type="checkbox" name="inclure_frais_retrait" value="1">
                     <span>Inclure frais de retrait pour le destinataire</span>
                 </label>
 
-                <button type="submit" class="btn-action">Transférer</button>
+                <button type="submit" class="btn-action">Effectuer le transfert</button>
             </form>
         </div>
 
         <!-- Transfert Multiple -->
-        <div class="action-card transfert-multiple">
+        <div class="action-card transfert-multiple" id="tab-transfert-multiple">
             <h3 class="action-title">Transfert Multiple (2 Destinataires)</h3>
             <form action="<?= base_url('client/transfert-multiple') ?>" method="post">
                 <?= csrf_field() ?>
@@ -342,7 +406,7 @@
                 <input type="text" name="numero_dest_2" class="form-control" placeholder="Ex: 0379876543" required>
 
                 <label>Montant à envoyer à CHACUN (Ar)</label>
-                <input type="number" step="100" name="montant" class="form-control" placeholder="Ex: 50000" required>
+                <input type="number" step="0.01" name="montant" class="form-control" placeholder="Ex: 50000" required>
 
                 <label class="checkbox-container">
                     <input type="checkbox" name="inclure_frais_retrait" value="1">
@@ -386,5 +450,25 @@
     </div>
 
 </div>
+
+<!-- SCRIPT POUR CHANGER LES ONGLETS -->
+<script>
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const tabName = button.getAttribute('data-tab');
+
+            // Réinitialiser les états actifs des boutons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Réinitialiser les formulaires affichés
+            document.querySelectorAll('.action-card').forEach(card => card.classList.remove('active'));
+
+            // Activer le bouton cliqué et le formulaire correspondant
+            button.classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+        });
+    });
+</script>
+
 </body>
 </html>
